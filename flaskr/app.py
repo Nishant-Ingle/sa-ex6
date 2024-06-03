@@ -44,6 +44,7 @@ def primes(n=None):
 @app.route('/getPrime/')
 @app.route('/getPrime/<int:n>')
 def nth_prime(n=None):
+    # return n-th prime number
     if n is None or n == 0:
         return render_template("nth-prime.html")
     if n > 1000:
