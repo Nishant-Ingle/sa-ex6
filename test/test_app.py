@@ -27,14 +27,14 @@ def test_hello_route(app, client):
     assert res.status_code == 200
 
 
-def test_primes_route(app, client):
-    res = client.get('/primes/')
+def test_get_primes_route(app, client):
+    res = client.get('/getPrime/')
     assert res.status_code == 200
-    res = client.get('/primes/5')
+    res = client.get('/getPrime/10')
     assert res.status_code == 200
-    expected = '[2, 3, 5, 7, 11]'
+    expected = '<p class="text-center">29</p>'
     assert expected in res.get_data(as_text=True)
-    res = client.get('/primes/1001')
+    res = client.get('/getPrime/1001')
     assert res.status_code == 200
     expected = "Please select a natural number lower or equal to 1000."
     assert expected == res.get_data(as_text=True)
