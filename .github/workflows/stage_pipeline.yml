@@ -66,17 +66,17 @@ jobs:
         # only scans under this path
           path: './flaskr'
     
-  deploy:
-    needs: [bandit-scan]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build Docker image
-        run: docker build . -t mgrum/flask-example-cicd:stage
-      - name: Push Docker image
-        run: docker push mgrum/flask-example-cicd:stage
+#  deploy:
+#    needs: [bandit-scan]
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: Login to Docker Hub
+#        uses: docker/login-action@v3
+#        with:
+#          username: ${{ secrets.DOCKERHUB_USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_TOKEN }}
+#      - name: Build Docker image
+#        run: docker build . -t mgrum/flask-example-cicd:stage
+#      - name: Push Docker image
+#        run: docker push mgrum/flask-example-cicd:stage
