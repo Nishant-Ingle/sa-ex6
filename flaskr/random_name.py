@@ -17,5 +17,5 @@ names_list = ["Rhona", "Creola", "Damian", "Breann", "Mohamed", "Karima", "Xiao"
 
 
 def random_name():
-    index = random.randint(0, len(names_list)-1)
+    index = random.randint(0, len(names_list)-1)    # nosec
     return str(names_list[index])

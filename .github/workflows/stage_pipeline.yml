@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     # Checkout the code from GitHub
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
     # Runs a pre configured Bandit scan 
       - name: Run bandit
         uses: jpetrucciani/bandit-check@master
