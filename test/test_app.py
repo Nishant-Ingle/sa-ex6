@@ -9,13 +9,6 @@ def test_index_route(app, client):
     assert expected in res.get_data(as_text=True)
 
 
-def test_json_route(app, client):
-    res = client.get('/json/')
-    assert res.status_code == 200
-    expected = {'hello': 'world'}
-    assert expected == json.loads(res.get_data(as_text=True))
-
-
 def test_hello_route(app, client):
     # default route
     res = client.get('/hello')

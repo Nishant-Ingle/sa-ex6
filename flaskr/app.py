@@ -29,13 +29,25 @@ def hello_random():
     return render_template("hello.html", name=rn.random_name())
 
 
-@app.route('/generatePrimes/')
-@app.route('/generatePrimes/<int:count>')
-def primes(count=None):
-    if count is None or count == 0:
-        return render_template("primes.html")
-    if count > 1000:
+@app.route('/isPrime/')
+@app.route('/isPrime/<int:n>')
+def primes(n=None):
+    if n is None or n == 0:
+        return render_template("is-prime.html")
+    if n > 1000:
         return "Please select a natural number lower or equal to 1000."
     # Return prime.html with list of prime numbers
-    return render_template("primes.html", count=str(count),
-                           primes=str(prime.get_primes(count)))
+    return render_template("is-prime.html", n=str(n),
+                           isPrime=bool(prime.is_prime(n)))
+
+
+@app.route('/getPrime/')
+@app.route('/getPrime/<int:n>')
+def nth_prime(n=None):
+    if n is None or n == 0:
+        return render_template("nth-prime.html")
+    if n > 1000:
+        return "Please select a natural number lower or equal to 1000."
+    # Return prime.html with list of prime numbers
+    return render_template("nth-prime.html", n=str(n),
+                           prime=str(prime.get_nth_prime(n)))

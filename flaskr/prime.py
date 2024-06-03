@@ -1,32 +1,35 @@
 
 
-def get_primes(y):
-    prime_list = []
-    current_number = 2
+def is_prime(n):
+    if n == 1:
+        return False
 
-    while len(prime_list) < y:
-        for i in range(2, int(current_number/2)+1):
-            if current_number % i == 0:
-                break
-        else:
-            prime_list.append(current_number)
+    for i in range(2, int(n/2)+1):
+        if n % i == 0:
+            return False
 
-        current_number += 1
-
-    return prime_list
+    return True
 
 
 def get_nth_prime(n):
+    if n <= 0:
+        return -1
+    if n == 1:
+        return 2
+
     prime_counter = 1
     current_number = 2
 
     while prime_counter < n:
+        current_number += 1
+        is_prime = True
+
         for i in range(2, int(current_number/2)+1):
             if current_number % i == 0:
+                is_prime = False
                 break
-        else:
-            prime_counter += 1
 
-        current_number += 1
+        if is_prime:
+            prime_counter += 1
 
     return current_number

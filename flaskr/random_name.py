@@ -1,7 +1,6 @@
 import random
 
-lis_names = ["Cherish", "Damaris", "Oren", "Nona", "Rhona", "Jackqueline",
-             "Creola", "Damian", "Breann", "Mohamed", "Karima", "Xiao",
+names_list = ["Rhona", "Creola", "Damian", "Breann", "Mohamed", "Karima", "Xiao",
              "Delsie", "Loris", "Betsy", "Lashon", "Kareem", "Ebony",
              "Mary", "Cherlyn", "Jerrie", "Claretta", "Ailene", "Christeen",
              "Leann", "Carmina", "Odilia", "Maurine", "Cary", "Burton",
@@ -18,5 +17,5 @@ lis_names = ["Cherish", "Damaris", "Oren", "Nona", "Rhona", "Jackqueline",
 
 
 def random_name():
-    index = random.randint(0, len(lis_names)-1)
-    return str(lis_names[index])
+    index = random.randint(0, len(names_list)-1)
+    return str(names_list[index])
