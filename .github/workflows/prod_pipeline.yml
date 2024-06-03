@@ -6,7 +6,7 @@ name: PROD - CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ tmp_main ]
 
 jobs:
   build:

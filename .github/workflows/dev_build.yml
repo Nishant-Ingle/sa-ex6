@@ -5,7 +5,7 @@ name: DEV - Build and Unittest
 
 on:
   push:
-    branches-ignore: [ main ]
+    branches-ignore: [ tmp_main ]
 
 jobs:
   build:
