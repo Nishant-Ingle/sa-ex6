@@ -4,14 +4,16 @@ This is a simple python flask application to host a simple web app.
 
 After starting the flask application you can access following URL's on the server:
 
-| Function        | URL                                     |
-|-----------------|-----------------------------------------|
-| index           | `http://<server>:<port>/`               |
-| json            | `http://<server>:<port>/json/`          |
-| hello           | `http://<server>:<port>/hello/`         |
-| hello \<name>   | `http://<server>:<port>/hello/<name>`   |
-| primes 100      | `http://<server>:<port>/primes/`        |
-| primes \<count> | `http://<server>:<port>/primes/<count>` |
+| Function           | URL                                       |
+|--------------------|-------------------------------------------|
+| index              | `http://<server>:<port>/`                 |
+| json               | `http://<server>:<port>/json/`            |
+| hello              | `http://<server>:<port>/hello/`           |
+| hello \<name>      | `http://<server>:<port>/hello/<name>`     |
+| isPrime            | `http://<server>:<port>/isPrimes/`        |
+| isPrime \<count>   | `http://<server>:<port>/isPrimes/<count>` |
+| getPrime           | `http://<server>:<port>/getPrime/`        |
+| getPrime \<count>  | `http://<server>:<port>/getPrime/<count>` |
 
 ## How to run
 
@@ -55,29 +57,21 @@ docker stop flask-example
 
 Requirements:
 * python3
-* python3-dev
 * python3-pip
-* gcc (to compile cython)
-* musl-dev (to compile cython)
 
 ## Instructions for Debian/Ubuntu
 
 1. Install requirements:
 
 ```bash
-apt update
-apt install gcc musl-dev python3 python3-dev python3-pip
-```
-2. Build/Install project:
-
-```bash
-. build.sh
+pip3 install -r requirements.txt
 ```
 
-3. Run the server on **localhost:8080**:
+3. Run the server
 
 ```bash
-. run.sh
+cd flaskr
+flask run
 ```
 
 # Development
@@ -96,101 +90,12 @@ source venv/bin/activate
 
 With `deactivate` you can disable the virtual environment.
 
-## Debugging
-
-### Built-In flask debugger
-You can debug the flask app by running following commands:
-
-<details><summary>Linux (Bash)</summary>
-<pre>
-export FLASK_APP=flaskr.app
-export FLASK_ENV=<b>development</b>
-flask run
-</pre></details>
-
-<details><summary>Windows (CMD)</summary>
-<pre>
-set FLASK_APP=flaskr.app
-set FLASK_ENV=<b>development</b>
-flask run
-</pre></details>
-
-<details><summary>Windows (PowerShell)</summary>
-<pre>
-$env:FLASK_APP = "flaskr.app"
-$env:FLASK_ENV = "<b>development</b>"
-flask run
-</pre></details>
-
-### External Debugger
-
-When using an external debugger, the app should still be in debug mode, but it an be useful to disable the built-in debugger and reloader, which can interfere.
-
-* `flask run --no-debugger`
-* `flask run --no-reload`
-* `flask run --no-debugger --no-reload`
-
-<details>
-<summary>Example configuration for <b>VS Code</b></summary>
-
-.vscode/launch.json
-
-```json
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Python: Flask",
-            "type": "python",
-            "request": "launch",
-            "module": "flask",
-            "env": {
-                "FLASK_APP": "flaskr/app.py",
-                "FLASK_ENV": "development",
-                "FLASK_RUN_PORT" : "8080",
-                "FLASK_DEBUG": "1"
-            },
-            "args": [
-                "run",
-                "--no-debugger"
-            ],
-            "jinja": true
-        }
-    ]
-}
-```
-</details>
-
 ## Testing
 
 To run unit tests:
 
 ```bash
-# install pytest manually or use "reset-dev.sh"
+# install pytest manually
 pip3 install pytest 
 pytest
 ```
-## Reset development environment
-
-You can use the script [reset-dev.sh](reset-dev.sh) to reset your development environment:
-
-```bash
-. reset-dev.sh
-```
-
-The script will do following:
-* (Re)create the virtual environment **venv** without dependencies installed
-* Activating **venv** in current terminal
-* Install development/testing tools in **venv**
-    * flake8 (Linting)
-    * pylint (Linting)
-    * autopep8 (Formatting)
-    * pytest (Testing)
-* Remove all folders created by build/install
-    * package info (*egg-info)    
-    * build folder
-    * dist folder
-    * pycache folders
-    * built cython files (*.so, *.pyd)
-
-Now you can build the project manually or with [build.sh](build.sh).
